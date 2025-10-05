@@ -12,7 +12,7 @@ export default function Home() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const count = JSON.parse(localStorage.getItem("count") ?? "");
+    const count = JSON.parse(localStorage.getItem("count") ?? "0");
     if (count) {
       setCount(count);
     }
