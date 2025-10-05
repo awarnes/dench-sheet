@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
-import Counter from "../counter/counter";
+import Counter from "../components/counter/counter";
+import DiceRoller from "../components/dice/dice-roller";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +10,10 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <Counter />;
+  return (
+    <>
+      <DiceRoller sides={6} count={3} />
+      <Counter />
+    </>
+  );
 }

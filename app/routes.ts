@@ -1,5 +1,10 @@
-import { type RouteConfig, route } from "@react-router/dev/routes";
+import {
+  type RouteConfig,
+  index,
+  prefix,
+  route,
+} from "@react-router/dev/routes";
 
 export default [
-  route("/dench-sheet/", "routes/home.tsx"),
+  ...prefix("/dench-sheet/", [index("routes/home.tsx")]),
 ] satisfies RouteConfig;

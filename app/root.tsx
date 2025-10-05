@@ -43,6 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  // Set dark mode for app
   useEffect(() => {
     const root = window.document.documentElement;
 

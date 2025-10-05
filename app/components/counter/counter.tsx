@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Button } from "../components/ui/button";
-import { ButtonGroup } from "../components/ui/button-group";
-import { Card, CardAction, CardHeader, CardTitle } from "../components/ui/card";
+import { Button } from "../ui/button";
+import { ButtonGroup } from "../ui/button-group";
+import { Card, CardAction, CardHeader, CardTitle } from "../ui/card";
 
 export default function Counter() {
   const [count, setCount] = useState(0);
