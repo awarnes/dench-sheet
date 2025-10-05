@@ -12,7 +12,8 @@ export function formatModifier(modifier: number): string {
 
 export function rollDice(sides: number, count = 1): number[] {
   const min = 1;
-  return new Array(count).map(
+  return Array.from(
+    { length: count },
     (_) => Math.floor(Math.random() * (sides - min + 1)) + min,
   );
 }
@@ -31,26 +32,21 @@ export default function Die({
   return (
     <>
       <Button onClick={() => setRolls(rollDice(sides, count))}>
-        {rolls.length ? (
-          <Collapsible>
-            <CollapsibleTrigger>
-              <p>
-                Total: {rolls.reduce((acc, curr) => acc + curr, 0) + modifier}
-              </p>
-              <p>Show individual rolls</p>
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <li>
-                {rolls.map((roll) => (
-                  <li>{roll}</li>
-                ))}
-              </li>
-            </CollapsibleContent>
-          </Collapsible>
-        ) : (
-          `Roll ${count}d${sides}`
-        )}
+        {rolls.length ? "Re-roll" : "Roll"} ${count}d${sides}
       </Button>
+      <Collapsible>
+        <CollapsibleTrigger>
+          <p>Total: {rolls.reduce((acc, curr) => acc + curr, 0) + modifier}</p>
+          <p>Show individual rolls</p>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <li>
+            {rolls.map((roll) => (
+              <li>{roll}</li>
+            ))}
+          </li>
+        </CollapsibleContent>
+      </Collapsible>
     </>
   );
 }
