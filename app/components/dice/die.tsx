@@ -32,19 +32,20 @@ export default function Die({
   return (
     <>
       <Button onClick={() => setRolls(rollDice(sides, count))}>
-        {rolls.length ? "Re-roll" : "Roll"} ${count}d${sides}
+        {rolls.length ? "Re-roll" : "Roll"} {count}d{sides}
+        {formatModifier(modifier)}
       </Button>
-      <Collapsible>
+      <Collapsible className="self-center">
         <CollapsibleTrigger>
           <p>Total: {rolls.reduce((acc, curr) => acc + curr, 0) + modifier}</p>
           <p>Show individual rolls</p>
         </CollapsibleTrigger>
         <CollapsibleContent>
-          <li>
+          <ul>
             {rolls.map((roll) => (
               <li>{roll}</li>
             ))}
-          </li>
+          </ul>
         </CollapsibleContent>
       </Collapsible>
     </>
