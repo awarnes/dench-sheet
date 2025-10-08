@@ -9,19 +9,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
-import Die, { formatModifier } from "./die";
-
-export type DiceRollerProps = {
-  sides: number;
-  count?: number;
-  modifier?: number;
-};
+import Die from "./die";
+import DiceDisplay from "./dice-display";
+import type { DiceRoll } from "../../character-data";
 
 export default function DiceRoller({
   sides,
   count = 1,
   modifier = 0,
-}: DiceRollerProps) {
+}: DiceRoll) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,8 +29,8 @@ export default function DiceRoller({
       <DialogContent>
         <DialogHeader>
           <DialogTitle>
-            Rolling {count}d{sides}
-            {formatModifier(modifier)}
+            Rolling{" "}
+            <DiceDisplay count={count} sides={sides} modifier={modifier} />
           </DialogTitle>
         </DialogHeader>
         <Die sides={sides} count={count} modifier={modifier} />

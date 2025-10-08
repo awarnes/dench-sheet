@@ -5,10 +5,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "../ui/collapsible";
-
-export function formatModifier(modifier: number): string {
-  return modifier >= 0 ? `+${modifier}` : `-${modifier}`;
-}
+import type { DiceRoll } from "../../character-data";
+import DiceDisplay from "./dice-display";
 
 export function rollDice(sides: number, count = 1): number[] {
   const min = 1;
@@ -18,22 +16,14 @@ export function rollDice(sides: number, count = 1): number[] {
   );
 }
 
-export default function Die({
-  sides,
-  count = 1,
-  modifier = 0,
-}: {
-  sides: number;
-  count: number;
-  modifier: number;
-}) {
+export default function Die({ sides, count = 1, modifier = 0 }: DiceRoll) {
   const [rolls, setRolls] = useState<number[]>([]);
 
   return (
     <>
       <Button onClick={() => setRolls(rollDice(sides, count))}>
-        {rolls.length ? "Re-roll" : "Roll"} {count}d{sides}
-        {formatModifier(modifier)}
+        {rolls.length ? "Re-roll" : "Roll"}{" "}
+        <DiceDisplay count={count} sides={sides} modifier={modifier} />
       </Button>
       <Collapsible className="self-center">
         <CollapsibleTrigger>
