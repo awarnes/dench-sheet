@@ -27,7 +27,12 @@ export default function Die({ sides, count = 1, modifier = 0 }: DiceRoll) {
       </Button>
       <Collapsible className="self-center">
         <CollapsibleTrigger>
-          <p>Total: {rolls.reduce((acc, curr) => acc + curr, 0) + modifier}</p>
+          <p>
+            Total:{" "}
+            {rolls.length
+              ? rolls.reduce((acc, curr) => acc + curr, 0) + modifier
+              : "--"}
+          </p>
           <p>Show individual rolls</p>
         </CollapsibleTrigger>
         <CollapsibleContent>
