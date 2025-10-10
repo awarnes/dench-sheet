@@ -5,8 +5,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
-import Counter from "../components/counter/counter";
-import DiceRoller from "../components/dice/dice-roller";
 import AbilityScores from "../sections/AbilityScores";
 import SavingThrows from "../sections/SavingThrows";
 import Attacks from "~/sections/Attacks";
@@ -19,6 +17,7 @@ import {
 import proficiencyBonus from "~/lib/proficiency-bonus";
 import scoreModifier from "~/lib/score-modifier";
 import formatModifier from "~/lib/format-modifier";
+import Health from "~/sections/Health";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -70,9 +69,9 @@ export default function Home() {
         </div>
         <div id="col-2" className="col-span-4">
           <Card>
-            <CardHeader>
-              <CardTitle>Col 2</CardTitle>
-            </CardHeader>
+            <CardContent>
+              <Health />
+            </CardContent>
           </Card>
         </div>
         <div id="col-3" className="col-span-4">
