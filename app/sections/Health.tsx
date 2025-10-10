@@ -141,28 +141,15 @@ export default function Health() {
                   <CardTitle>Successes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Ratings rating={3} totalStars={3} Icon={<Heart />} />
-                  {/*<ToggleGroup
-                    type="multiple"
-                    value={Array.from({ length: success }, (_, i) =>
-                      i.toString(),
-                    )}
-                    onValueChange={updateSuccess}
-                    className="grid-flow-col"
-                  >
-                    <ToggleGroupItem value="0" id="s1">
-                      <Meh />
-                    </ToggleGroupItem>
-                    <ToggleGroupItem value="1" id="s2">
-                      <Smile />
-                    </ToggleGroupItem>
-                    <ToggleGroupItem value="2" id="s3">
-                      <Laugh />
-                    </ToggleGroupItem>
-                    <Button onClick={() => setSuccess(0)}>
-                      <RotateCcw />
-                    </Button>
-                  </ToggleGroup>*/}
+                  <Ratings
+                    onClick={() => setSuccess(success + 1)}
+                    rating={success}
+                    totalStars={3}
+                    Icon={<Heart />}
+                  />
+                  <Button onClick={() => setSuccess(0)}>
+                    <RotateCcw />
+                  </Button>
                 </CardContent>
               </Card>
               <Card>
@@ -171,33 +158,15 @@ export default function Health() {
                 </CardHeader>
                 <CardContent>
                   <Ratings
-                    onClick={(v) => console.log(v)}
-                    rating={3}
+                    onClick={() => setFailure(failure + 1)}
+                    rating={failure}
                     totalStars={3}
                     variant="destructive"
                     Icon={<Skull />}
                   />
-                  {/*<ToggleGroup
-                    type="multiple"
-                    value={Array.from({ length: failure }, (_, i) =>
-                      i.toString(),
-                    )}
-                    onValueChange={updateFailure}
-                    className="grid-flow-col"
-                  >
-                    <ToggleGroupItem value="0" id="f1">
-                      <Frown />
-                    </ToggleGroupItem>
-                    <ToggleGroupItem value="1" id="f2">
-                      <Angry />
-                    </ToggleGroupItem>
-                    <ToggleGroupItem value="2" id="f3">
-                      <Skull />
-                    </ToggleGroupItem>
-                    <Button onClick={() => setFailure(0)}>
-                      <RotateCcw />
-                    </Button>
-                  </ToggleGroup>*/}
+                  <Button onClick={() => setFailure(0)}>
+                    <RotateCcw />
+                  </Button>
                 </CardContent>
               </Card>
             </CardContent>
