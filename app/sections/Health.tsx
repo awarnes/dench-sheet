@@ -44,7 +44,7 @@ export default function Health() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("hit_points", JSON.stringify(failure));
+    localStorage.setItem("failure", JSON.stringify(failure));
   }, [failure]);
 
   const [hitDiceCount, setHitDiceCount] = useState(LEVEL);
@@ -164,7 +164,7 @@ export default function Health() {
                 </CardHeader>
                 <CardContent>
                   <Ratings
-                    onClick={() => setSuccess(Math.max(success + 1, 3))}
+                    onClick={() => setSuccess(Math.min(success + 1, 3))}
                     rating={success}
                     totalStars={3}
                     Icon={<Heart />}
@@ -180,7 +180,7 @@ export default function Health() {
                 </CardHeader>
                 <CardContent>
                   <Ratings
-                    onClick={() => setFailure(Math.max(failure + 1, 3))}
+                    onClick={() => setFailure(Math.min(failure + 1, 3))}
                     rating={failure}
                     totalStars={3}
                     variant="destructive"
