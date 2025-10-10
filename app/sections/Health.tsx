@@ -141,7 +141,7 @@ export default function Health() {
                   <CardTitle>Successes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Ratings rating={3} Icon={<Heart />} />
+                  <Ratings rating={3} totalStars={3} Icon={<Heart />} />
                   {/*<ToggleGroup
                     type="multiple"
                     value={Array.from({ length: success }, (_, i) =>
@@ -170,7 +170,13 @@ export default function Health() {
                   <CardTitle>Failures</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Ratings rating={3} variant="destructive" Icon={<Skull />} />
+                  <Ratings
+                    onClick={(v) => console.log(v)}
+                    rating={3}
+                    totalStars={3}
+                    variant="destructive"
+                    Icon={<Skull />}
+                  />
                   {/*<ToggleGroup
                     type="multiple"
                     value={Array.from({ length: failure }, (_, i) =>

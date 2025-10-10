@@ -78,6 +78,7 @@ interface PartialStarProps {
   className?: string;
   Icon: React.ReactElement;
 }
+
 const PartialStar = ({ ...props }: PartialStarProps) => {
   const { fillPercentage, size, className, Icon } = props;
 
