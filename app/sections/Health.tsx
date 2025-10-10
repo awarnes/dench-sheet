@@ -1,7 +1,17 @@
 import { useEffect, useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import {
+  Plus,
+  Minus,
+  Meh,
+  Smile,
+  Laugh,
+  Frown,
+  Angry,
+  Skull,
+  RotateCcw,
+} from "lucide-react";
 import { Button } from "~/components/ui/button";
-import { RadioGroup, RadioGroupItem } from "~/components/ui/radio-group";
+import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 import {
   Card,
   CardContent,
@@ -22,8 +32,8 @@ import formatModifier from "~/lib/format-modifier";
 import scoreModifier from "~/lib/score-modifier";
 
 export default function Health() {
-  const [success, setSuccess] = useState("");
-  const [failure, setFailure] = useState(null);
+  const [success, setSuccess] = useState(0);
+  const [failure, setFailure] = useState(0);
   const [hitDiceCount, setHitDiceCount] = useState(LEVEL);
   const [hitPoints, setHitPoints] = useState(`${MAX_HITPOINTS}`);
 
@@ -35,15 +45,21 @@ export default function Health() {
   }, []);
 
   useEffect(() => {
-    console.log("HITPOINTS CHANGED", hitPoints);
-    localStorage.setItem("hit_points", JSON.stringify(hitPoints));
+    localStorage.setItem("hit_points", hitPoints);
   }, [hitPoints]);
 
-  const updateSuccess = (v) => {
-    console.log("calling set success: ", v);
-    setSuccess(v);
+  const updateHitDice = (value: number) => {
+    setHitDiceCount(Math.min(LEVEL, Math.max(0, hitDiceCount + value)));
   };
 
+  const updateSuccess = (value: string) => {
+    console.log("calling set success: ", value);
+    setSuccess(parseInt(value));
+  };
+
+  const updateFailure = (value: string) => {
+    setFailure(parseInt(value));
+  };
   return (
     <Card>
       <CardContent>
@@ -105,11 +121,11 @@ export default function Health() {
             <CardContent>
               <Card>
                 <CardContent className="flex align-baseline justify-between">
-                  <Button onClick={() => setHitDiceCount(hitDiceCount + 1)}>
+                  <Button onClick={() => updateHitDice(1)}>
                     <Plus />
                   </Button>
                   {hitDiceCount}/{LEVEL}
-                  <Button onClick={() => setHitDiceCount(hitDiceCount - 1)}>
+                  <Button onClick={() => updateHitDice(-1)}>
                     <Minus />
                   </Button>
                 </CardContent>
@@ -134,26 +150,27 @@ export default function Health() {
                   <CardTitle>Successes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <RadioGroup
+                  <ToggleGroup
+                    type="multiple"
+                    value={Array.from({ length: success }, (_, i) =>
+                      i.toString(),
+                    )}
                     onValueChange={updateSuccess}
                     className="grid-flow-col"
                   >
-                    <RadioGroupItem
-                      checked={success == "1"}
-                      value="1"
-                      id="s1"
-                    />
-                    <RadioGroupItem
-                      checked={success == "2"}
-                      value="2"
-                      id="s2"
-                    />
-                    <RadioGroupItem
-                      checked={success == "3"}
-                      value="3"
-                      id="s3"
-                    />
-                  </RadioGroup>
+                    <ToggleGroupItem value="1" id="s1">
+                      <Meh />
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="2" id="s2">
+                      <Smile />
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="3" id="s3">
+                      <Laugh />
+                    </ToggleGroupItem>
+                    <Button onClick={() => setSuccess(0)}>
+                      <RotateCcw />
+                    </Button>
+                  </ToggleGroup>
                 </CardContent>
               </Card>
               <Card>
@@ -161,11 +178,27 @@ export default function Health() {
                   <CardTitle>Failures</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <RadioGroup className="grid-flow-col">
-                    <RadioGroupItem value="1" id="f1" />
-                    <RadioGroupItem value="2" id="f2" />
-                    <RadioGroupItem value="3" id="f3" />
-                  </RadioGroup>
+                  <ToggleGroup
+                    type="multiple"
+                    value={Array.from({ length: failure }, (_, i) =>
+                      i.toString(),
+                    )}
+                    onValueChange={updateFailure}
+                    className="grid-flow-col"
+                  >
+                    <ToggleGroupItem value="1" id="f1">
+                      <Frown />
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="2" id="f2">
+                      <Angry />
+                    </ToggleGroupItem>
+                    <ToggleGroupItem value="3" id="f3">
+                      <Skull />
+                    </ToggleGroupItem>
+                    <Button onClick={() => setFailure(0)}>
+                      <RotateCcw />
+                    </Button>
+                  </ToggleGroup>
                 </CardContent>
               </Card>
             </CardContent>
