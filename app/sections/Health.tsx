@@ -52,13 +52,13 @@ export default function Health() {
     setHitDiceCount(Math.min(LEVEL, Math.max(0, hitDiceCount + value)));
   };
 
-  const updateSuccess = (value: string) => {
+  const updateSuccess = (value: string[]) => {
     console.log("calling set success: ", value);
-    setSuccess(parseInt(value));
+    setSuccess(parseInt(value[0]));
   };
 
-  const updateFailure = (value: string) => {
-    setFailure(parseInt(value));
+  const updateFailure = (value: string[]) => {
+    setFailure(parseInt(value[0]));
   };
   return (
     <Card>
@@ -158,13 +158,13 @@ export default function Health() {
                     onValueChange={updateSuccess}
                     className="grid-flow-col"
                   >
-                    <ToggleGroupItem value="1" id="s1">
+                    <ToggleGroupItem value="0" id="s1">
                       <Meh />
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="2" id="s2">
+                    <ToggleGroupItem value="1" id="s2">
                       <Smile />
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="3" id="s3">
+                    <ToggleGroupItem value="2" id="s3">
                       <Laugh />
                     </ToggleGroupItem>
                     <Button onClick={() => setSuccess(0)}>
@@ -186,13 +186,13 @@ export default function Health() {
                     onValueChange={updateFailure}
                     className="grid-flow-col"
                   >
-                    <ToggleGroupItem value="1" id="f1">
+                    <ToggleGroupItem value="0" id="f1">
                       <Frown />
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="2" id="f2">
+                    <ToggleGroupItem value="1" id="f2">
                       <Angry />
                     </ToggleGroupItem>
-                    <ToggleGroupItem value="3" id="f3">
+                    <ToggleGroupItem value="2" id="f3">
                       <Skull />
                     </ToggleGroupItem>
                     <Button onClick={() => setFailure(0)}>
