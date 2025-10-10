@@ -24,8 +24,41 @@ import scoreModifier from "~/lib/score-modifier";
 
 export default function Health() {
   const [success, setSuccess] = useState(0);
+  useEffect(() => {
+    const succ = JSON.parse(localStorage.getItem("success") ?? "0");
+    if (succ) {
+      setSuccess(succ);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("success", JSON.stringify(success));
+  }, [success]);
+
   const [failure, setFailure] = useState(0);
+  useEffect(() => {
+    const fail = JSON.parse(localStorage.getItem("failure") ?? "0");
+    if (fail) {
+      setFailure(fail);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("hit_points", JSON.stringify(failure));
+  }, [failure]);
+
   const [hitDiceCount, setHitDiceCount] = useState(LEVEL);
+  useEffect(() => {
+    const hd = JSON.parse(localStorage.getItem("hitDiceCount") ?? `${LEVEL}`);
+    if (hd) {
+      setHitDiceCount(hd);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("hitDiceCount", JSON.stringify(hitDiceCount));
+  }, [hitDiceCount]);
+
   const [hitPoints, setHitPoints] = useState(`${MAX_HITPOINTS}`);
 
   useEffect(() => {
@@ -43,14 +76,6 @@ export default function Health() {
     setHitDiceCount(Math.min(LEVEL, Math.max(0, hitDiceCount + value)));
   };
 
-  const updateSuccess = (value: string[]) => {
-    console.log("calling set success: ", value);
-    setSuccess(parseInt(value[0]));
-  };
-
-  const updateFailure = (value: string[]) => {
-    setFailure(parseInt(value[0]));
-  };
   return (
     <Card>
       <CardContent>
@@ -95,10 +120,7 @@ export default function Health() {
                 <Input
                   value={hitPoints}
                   type="number"
-                  onChange={(evt) => {
-                    console.log(evt);
-                    setHitPoints(evt.target.value);
-                  }}
+                  onChange={(evt) => setHitPoints(evt.target.value)}
                 ></Input>
               </CardContent>
             </Card>
@@ -142,7 +164,7 @@ export default function Health() {
                 </CardHeader>
                 <CardContent>
                   <Ratings
-                    onClick={() => setSuccess(success + 1)}
+                    onClick={() => setSuccess(Math.max(success + 1, 3))}
                     rating={success}
                     totalStars={3}
                     Icon={<Heart />}
@@ -158,7 +180,7 @@ export default function Health() {
                 </CardHeader>
                 <CardContent>
                   <Ratings
-                    onClick={() => setFailure(failure + 1)}
+                    onClick={() => setFailure(Math.max(failure + 1, 3))}
                     rating={failure}
                     totalStars={3}
                     variant="destructive"
