@@ -1,15 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Plus,
-  Minus,
-  Meh,
-  Smile,
-  Laugh,
-  Frown,
-  Angry,
-  Skull,
-  RotateCcw,
-} from "lucide-react";
+import { Plus, Minus, Heart, Skull, RotateCcw } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
 import {
@@ -18,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../components/ui/card";
+import { Ratings } from "~/components/ui/ratings";
 
 import {
   ABILITY_SCORES,
@@ -150,7 +141,8 @@ export default function Health() {
                   <CardTitle>Successes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ToggleGroup
+                  <Ratings rating={3} Icon={<Heart />} />
+                  {/*<ToggleGroup
                     type="multiple"
                     value={Array.from({ length: success }, (_, i) =>
                       i.toString(),
@@ -170,7 +162,7 @@ export default function Health() {
                     <Button onClick={() => setSuccess(0)}>
                       <RotateCcw />
                     </Button>
-                  </ToggleGroup>
+                  </ToggleGroup>*/}
                 </CardContent>
               </Card>
               <Card>
@@ -178,7 +170,8 @@ export default function Health() {
                   <CardTitle>Failures</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <ToggleGroup
+                  <Ratings rating={3} variant="destructive" Icon={<Skull />} />
+                  {/*<ToggleGroup
                     type="multiple"
                     value={Array.from({ length: failure }, (_, i) =>
                       i.toString(),
@@ -198,7 +191,7 @@ export default function Health() {
                     <Button onClick={() => setFailure(0)}>
                       <RotateCcw />
                     </Button>
-                  </ToggleGroup>
+                  </ToggleGroup>*/}
                 </CardContent>
               </Card>
             </CardContent>
