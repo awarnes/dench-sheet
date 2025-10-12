@@ -18,6 +18,8 @@ import proficiencyBonus from "~/lib/proficiency-bonus";
 import scoreModifier from "~/lib/score-modifier";
 import formatModifier from "~/lib/format-modifier";
 import Health from "~/sections/Health";
+import Background from "~/sections/Background";
+import Features from "~/sections/Features";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -49,7 +51,6 @@ export default function Home() {
                 </CardHeader>
               </Card>
               <SavingThrows />
-              <Attacks />
             </div>
           </div>
           <Card>
@@ -71,14 +72,16 @@ export default function Home() {
           <Card>
             <CardContent>
               <Health />
+              <Attacks />
             </CardContent>
           </Card>
         </div>
         <div id="col-3" className="col-span-4">
           <Card>
-            <CardHeader>
-              <CardTitle>Col 3</CardTitle>
-            </CardHeader>
+            <CardContent>
+              <Background />
+              <Features />
+            </CardContent>
           </Card>
         </div>
       </div>

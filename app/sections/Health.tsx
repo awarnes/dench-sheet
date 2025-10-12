@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { Plus, Minus, Heart, Skull, RotateCcw } from "lucide-react";
 import { Button } from "~/components/ui/button";
-import { ToggleGroup, ToggleGroupItem } from "~/components/ui/toggle-group";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+} from "~/components/ui/button-group";
 import {
   Card,
   CardContent,
@@ -59,10 +62,10 @@ export default function Health() {
     localStorage.setItem("hitDiceCount", JSON.stringify(hitDiceCount));
   }, [hitDiceCount]);
 
-  const [hitPoints, setHitPoints] = useState(`${MAX_HITPOINTS}`);
+  const [hitPoints, setHitPoints] = useState(MAX_HITPOINTS.toString());
 
   useEffect(() => {
-    const hp = localStorage.getItem("hit_points") ?? `${MAX_HITPOINTS}`;
+    const hp = localStorage.getItem("hit_points") ?? MAX_HITPOINTS.toString();
     if (hp) {
       setHitPoints(hp);
     }
@@ -117,11 +120,19 @@ export default function Health() {
                 <CardTitle>Current Hit Points</CardTitle>
               </CardHeader>
               <CardContent>
-                <Input
-                  value={hitPoints}
-                  type="number"
-                  onChange={(evt) => setHitPoints(evt.target.value)}
-                ></Input>
+                <ButtonGroup>
+                  <Input
+                    value={hitPoints}
+                    type="number"
+                    onChange={(evt) => setHitPoints(evt.target.value)}
+                  ></Input>
+                  <ButtonGroupSeparator />
+                  <Button
+                    onClick={() => setHitPoints(MAX_HITPOINTS.toString())}
+                  >
+                    <RotateCcw />
+                  </Button>
+                </ButtonGroup>
               </CardContent>
             </Card>
           </CardContent>
@@ -163,15 +174,18 @@ export default function Health() {
                   <CardTitle>Successes</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Ratings
-                    onClick={() => setSuccess(Math.min(success + 1, 3))}
-                    rating={success}
-                    totalStars={3}
-                    Icon={<Heart />}
-                  />
-                  <Button onClick={() => setSuccess(0)}>
-                    <RotateCcw />
-                  </Button>
+                  <ButtonGroup>
+                    <Ratings
+                      onClick={() => setSuccess(Math.min(success + 1, 3))}
+                      rating={success}
+                      totalStars={3}
+                      icon={<Heart />}
+                    />
+                    <ButtonGroupSeparator />
+                    <Button onClick={() => setSuccess(0)}>
+                      <RotateCcw />
+                    </Button>
+                  </ButtonGroup>
                 </CardContent>
               </Card>
               <Card>
@@ -179,16 +193,19 @@ export default function Health() {
                   <CardTitle>Failures</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <Ratings
-                    onClick={() => setFailure(Math.min(failure + 1, 3))}
-                    rating={failure}
-                    totalStars={3}
-                    variant="destructive"
-                    Icon={<Skull />}
-                  />
-                  <Button onClick={() => setFailure(0)}>
-                    <RotateCcw />
-                  </Button>
+                  <ButtonGroup>
+                    <Ratings
+                      onClick={() => setFailure(Math.min(failure + 1, 3))}
+                      rating={failure}
+                      totalStars={3}
+                      variant="destructive"
+                      icon={<Skull />}
+                    />
+                    <ButtonGroupSeparator />
+                    <Button onClick={() => setFailure(0)}>
+                      <RotateCcw />
+                    </Button>
+                  </ButtonGroup>
                 </CardContent>
               </Card>
             </CardContent>
