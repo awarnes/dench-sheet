@@ -9,14 +9,14 @@ export default function RageManager() {
   const [exhaustion, setExhaustion] = useState(0);
 
   useEffect(() => {
-    const exh = JSON.parse(localStorage.get("exhaustion") ?? "0");
+    const exh = JSON.parse(localStorage.getItem("exhaustion") ?? "0");
     if (exh) {
       setExhaustion(exh);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.set("exhaustion", JSON.stringify(exhaustion));
+    localStorage.setItem("exhaustion", JSON.stringify(exhaustion));
   }, [exhaustion]);
 
   return (

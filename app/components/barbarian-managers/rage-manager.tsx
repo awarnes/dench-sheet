@@ -10,13 +10,13 @@ export default function RageManager() {
   const [rage, setRage] = useState(MAX_RAGES);
 
   useEffect(() => {
-    const rg = JSON.parse(localStorage.get("rage") ?? "0");
+    const rg = JSON.parse(localStorage.getItem("rage") ?? "0");
     if (rg) {
       setRage(rg);
     }
   }, []);
 
-  useEffect(() => localStorage.set("rage", JSON.stringify(rage)), [rage]);
+  useEffect(() => localStorage.setItem("rage", JSON.stringify(rage)), [rage]);
 
   return (
     <Card>

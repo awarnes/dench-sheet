@@ -1,6 +1,4 @@
 import scoreModifier from "./lib/score-modifier";
-import RageManager from "~/components/barbarian-managers/rage-manager";
-import FrenzyManager from "~/components/barbarian-managers/frenzy-manager";
 
 export const ABILITIES = {
   STR: "Strength",
@@ -170,19 +168,18 @@ export const FEATURES = [
   {
     title: "Rage",
     description: `In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action.
-    While raging, you gain the following benefits if you aren't wearing heavy armor:
+    While raging, you gain the following benefits if you aren't wearing heavy armor:\n
 
-    - You have advantage on Strength checks and Strength saving throws.
+    - You have advantage on Strength checks and Strength saving throws.\n
     - When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that
-    increases as you gain leveis as a barbarian, as shown in the Rage Damage column of the Barbarian table.
-    - You have resistance to bludgeoning, piercing, and slashing damage.
+    increases as you gain leveis as a barbarian, as shown in the Rage Damage column of the Barbarian table.\n
+    - You have resistance to bludgeoning, piercing, and slashing damage.\n
 
     If you are able to cast spells, you ean't cast them or concentrate on them while raging. Your rage lasts for 1 minute. It ends early if you are knocked unconscious or if your turn ends and you
-    haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action.
+    haven't attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action.\n
 
     Once you have raged the number of times shown for your barbarian level in the Rages column of the Barbarian table, you must finish a long rest before you can rage again.`,
     type: FeatureType.BonusAction,
-    extra: <RageManager />,
   },
   {
     title: "Unarmored Defense",
@@ -202,27 +199,26 @@ export const FEATURES = [
   },
   {
     title: "Frenzy",
-    description: `You can frenzy when you go into a rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. When your rage ends, you suffer on level of exhaustion.
+    description: `You can frenzy when you go into a rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one. When your rage ends, you suffer on level of exhaustion.\n
 
-      Level 1 - Disadvantage on ability checks
-      Level 2 - Speed halved
-      Level 3 - Disadvantage on attack rolls and saving throws
-      Level 4 - Hit point maximum halved
-      Level 5 - Speed reduced to 0
-      Level 6 - Death
+      Level 1 - Disadvantage on ability checks\n
+      Level 2 - Speed halved\n
+      Level 3 - Disadvantage on attack rolls and saving throws\n
+      Level 4 - Hit point maximum halved\n
+      Level 5 - Speed reduced to 0\n
+      Level 6 - Death\n
 
     You suffer all effects of your level and below. A long rest recuded the creature's exhaustion level by 1, provided that the creature has also ingested some food and drink.
       `,
     type: FeatureType.BonusAction,
-    extra: <FrenzyManager />,
   },
   {
     title: "Sentinel",
     type: FeatureType.Passive,
-    description: `You have masetered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits:
+    description: `You have masetered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits:\n\n
 
-    - When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.
-    - Creatures within 5 feet of you provoke opportunity attacks from you event if they take the Disengage action before leaving your reach.
+    - When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the turn.\n
+    - Creatures within 5 feet of you provoke opportunity attacks from you event if they take the Disengage action before leaving your reach.\n
     - When a creature within 5 feet of you makes an attack against a target other than you (and that target doesn't have this feat), you can use your reaction to make a melee weapon attack against the attacking creature.`,
   },
 ];

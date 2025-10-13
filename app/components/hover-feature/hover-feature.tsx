@@ -31,17 +31,20 @@ function getFeatureType(type: ValueOf<typeof FeatureType>): string {
 
 export default function HoverFeature(props: HoverFeatureProps) {
   return (
-    <HoverCard>
-      <HoverCardTrigger asChild>{props.title}</HoverCardTrigger>
-      <HoverCardContent>
-        <div>
-          <Avatar>
-            <AvatarFallback>{getFeatureType(props.type)}</AvatarFallback>
-          </Avatar>
-          <p className="text-sm">{props.description}</p>
-          {props.extra ? props.extra : <></>}
-        </div>
-      </HoverCardContent>
-    </HoverCard>
+    <div>
+      <HoverCard>
+        <HoverCardTrigger>{props.title}</HoverCardTrigger>
+
+        <HoverCardContent>
+          <div>
+            <Avatar>
+              <AvatarFallback>{getFeatureType(props.type)}</AvatarFallback>
+            </Avatar>
+            <p className="text-sm">{props.description}</p>
+            {props.extra ? props.extra : <></>}
+          </div>
+        </HoverCardContent>
+      </HoverCard>
+    </div>
   );
 }
