@@ -29,7 +29,7 @@ export default function RageManager() {
           <Ratings
             onClick={() => setExhaustion(Math.min(exhaustion + 1, 6))}
             rating={exhaustion}
-            totalStars={6}
+            totalstars={6}
             icon={<Zap />}
           />
           <ButtonGroupSeparator />

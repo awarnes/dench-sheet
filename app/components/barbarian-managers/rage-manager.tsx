@@ -28,7 +28,7 @@ export default function RageManager() {
           <Ratings
             onClick={() => setRage(Math.min(rage + 1, MAX_RAGES))}
             rating={rage}
-            totalStars={MAX_RAGES}
+            totalstars={MAX_RAGES}
             icon={<Angry />}
           />
           <ButtonGroupSeparator />

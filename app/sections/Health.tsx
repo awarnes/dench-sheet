@@ -178,7 +178,7 @@ export default function Health() {
                     <Ratings
                       onClick={() => setSuccess(Math.min(success + 1, 3))}
                       rating={success}
-                      totalStars={3}
+                      totalstars={3}
                       icon={<Heart />}
                     />
                     <ButtonGroupSeparator />
@@ -197,7 +197,7 @@ export default function Health() {
                     <Ratings
                       onClick={() => setFailure(Math.min(failure + 1, 3))}
                       rating={failure}
-                      totalStars={3}
+                      totalstars={3}
                       variant="destructive"
                       icon={<Skull />}
                     />

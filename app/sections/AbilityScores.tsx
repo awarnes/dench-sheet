@@ -7,6 +7,7 @@ import {
 } from "../components/ui/card";
 import scoreModifier from "../lib/score-modifier";
 import formatModifier from "../lib/format-modifier";
+import { ABILITY_SCORES } from "../character-data";
 
 function AbilityScore({ ability, score }: { ability: string; score: number }) {
   return (
@@ -27,14 +28,7 @@ export default function AbilityScores() {
         <CardTitle>Ability Scores</CardTitle>
       </CardHeader>
       <CardContent>
-        {Object.entries({
-          Strength: 12,
-          Dexterity: 12,
-          Constitution: 12,
-          Intelligence: 12,
-          Wisdom: 12,
-          Charisma: 12,
-        }).map(([ability, score]) => {
+        {Object.entries(ABILITY_SCORES).map(([ability, score]) => {
           return (
             <AbilityScore
               key={`as-${ability}`}
