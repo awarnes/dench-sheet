@@ -23,10 +23,8 @@ function Skill({
     <p>
       {proficient ? <CircleCheck /> : <Circle />}{" "}
       {formatModifier(
-        scoreModifier(
-          ABILITY_SCORES[ability as keyof typeof ABILITY_SCORES] +
-            (proficient ? proficiencyBonus(LEVEL) : 0),
-        ),
+        scoreModifier(ABILITY_SCORES[ability as keyof typeof ABILITY_SCORES]) +
+          (proficient ? proficiencyBonus(LEVEL) : 0),
       )}{" "}
       {name}
     </p>
@@ -35,21 +33,20 @@ function Skill({
 
 export default function Skills() {
   return (
-    <p></p>
-    // <Card>
-    //   <CardHeader>
-    //     <CardTitle>Skills</CardTitle>
-    //   </CardHeader>
-    //   {/*<CardContent>
-    //     {Object.entries(SKILLS).map(([name, { ability, proficient }]) => (
-    //       <Skill
-    //         key={name}
-    //         name={name}
-    //         ability={ability}
-    //         proficient={proficient}
-    //       />
-    //     ))}
-    //   </CardContent>*/}
-    // </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Skills</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {Object.entries(SKILLS).map(([name, { ability, proficient }]) => (
+          <Skill
+            key={name}
+            name={name}
+            ability={ability}
+            proficient={proficient}
+          />
+        ))}
+      </CardContent>
+    </Card>
   );
 }
