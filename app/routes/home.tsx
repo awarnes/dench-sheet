@@ -20,6 +20,7 @@ import formatModifier from "~/lib/format-modifier";
 import Health from "~/sections/Health";
 import Background from "~/sections/Background";
 import Features from "~/sections/Features";
+import Skills from "~/sections/Skills";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -51,6 +52,7 @@ export default function Home() {
                 </CardHeader>
               </Card>
               <SavingThrows />
+              <Skills />
             </div>
           </div>
           <Card>
